@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,17 +9,34 @@
   <link rel="stylesheet" href="style.css">
   <title>Rock Paper Scissors</title>
 </head>
+
 <body>
-  <div class="top">
+  <div class="header">
     <h1>Rock Paper Scissors</h1>
   </div>
+  <div class="intro">
+    <h2>First to 5 Wins</h2>
+  </div>
   <div class="container">
-    <div class="box">Rock</div>
-    <div class="box">Paper</div>
-    <div class="box">Scissors</div>
+
+    <div class="choices">
+      <div class="box">
+        <button class="btn">Rock</button>
+      </div>
+      <div class="btn">
+      <button class="btn">Paper</button>
+      </div>
+      <div class="box">
+        <button class="btn">Scissors</button>
+      </div>
+    </div>
+    <div class="score">
+      <h1 id="score">Score 0 - 0</h1>
+    </div>
   </div>
   <div class="footer">
     <p>The Odin Project</p>
   </div>
 </body>
+
 </html>
