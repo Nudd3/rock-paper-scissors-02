@@ -1,36 +1,7 @@
 /*
-function getComputerChoice() {
-  let choice = Math.floor(Math.random() * 3) + 1;
 
-  switch(choice) {
-    case 1: 
-    return 'rock';
-    
-    case 2:
-    return 'paper';
 
-    default:
-    return 'scissors';
-  }
-}
 
-function playRound(playerSelection, computerSelection){
-  
-  if (playerSelection == computerSelection){
-    console.log("It's a draw!");
-    return "draw";
-  } else if( playerSelection == 'rock' && computerSelection == 'scissors'
-  || playerSelection == 'paper' && computerSelection == 'rock'
-  || playerSelection == 'scissors' && computerSelection == 'paper'){
-    console.log(`You won! ${playerSelection} beats ${computerSelection}`);
-    return "player";
-  } else {
-    console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
-    return "computer";
-  }
-}
-
-console.log("hello");
 
 function game(){
   let playerScore = 0;
@@ -73,4 +44,75 @@ function showScore(playerScore, computerScore){
 game();
 */
 
-// The above code is from the
+// The above code is from the initial exercise
+let computerSelection;
+let playerSelection;
+let playerScore = 0;
+let computerScore = 0;
+
+let buttons = document.querySelectorAll('.btn');
+let score = document.querySelector('.score');
+
+function playRound(playerSelection, computerSelection){
+  computerSelection = getComputerChoice();
+  if (playerSelection === computerSelection){
+    return;
+  } else if( playerSelection == 'rock' && computerSelection == 'scissors'
+  || playerSelection == 'paper' && computerSelection == 'rock'
+  || playerSelection == 'scissors' && computerSelection == 'paper'){
+    //return "player";
+    playerScore++;
+  } else {
+    //return "computer";
+    computerScore++;
+  }
+  return;
+}
+
+function getComputerChoice() {
+  let choice = Math.floor(Math.random() * 3) + 1;
+
+  switch(choice) {
+    case 1: 
+    return 'rock';
+    
+    case 2:
+    return 'paper';
+
+    case 3:
+    return 'scissors';
+  }
+}
+
+function showScore(){
+  score.textContent = `${playerScore} - ${computerScore}`;
+  if (playerScore === 5 || computerScore === 5){
+    displayResluts();
+  }
+}
+
+function displayResluts() {
+  const endMessage = document.createElement('p');
+  if (playerScore === 5){
+    endMessage.textContent = 'Player won! Refresh site to play again'
+  } else {
+    endMessage.textContent = 'Computer won! Refresh site to play again'
+  }
+
+  score.appendChild(endMessage);
+  buttons.forEach((button) => {
+    button.classList.toggle('disable');
+  })
+}
+
+buttons.forEach((button) => {
+  button.addEventListener('click', () => {
+    playerSelection = button.textContent.toLowerCase();
+    
+    playRound(playerSelection, computerSelection);
+    showScore();
+  })
+});
+
+// Create three buttons
+// Add event listener to each button that calls playRound
